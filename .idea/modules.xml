@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/potty-party.iml" filepath="$PROJECT_DIR$/.idea/modules/potty-party.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/potty-party_main.iml" filepath="$PROJECT_DIR$/.idea/modules/potty-party_main.iml" group="potty-party" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/potty-party_test.iml" filepath="$PROJECT_DIR$/.idea/modules/potty-party_test.iml" group="potty-party" />
+    </modules>
+  </component>
+</project>
