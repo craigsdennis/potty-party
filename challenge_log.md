@@ -6,3 +6,7 @@
 * Added new Alexa Skill
 * Started researching custom Alexa Skills Kit.
 * Started looking at the official [Java samples on GitHub](https://github.com/amzn/alexa-skills-kit-java).
+
+## Day 2
+* More research of the Java Samples
+* Started a Gradle Project
