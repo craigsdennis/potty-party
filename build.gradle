@@ -1,7 +1,19 @@
-apply plugin: 'java'
-
 group = "com.github.craigsdennis"
 version = '1.0'
+
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+
 
 compileJava {
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -17,6 +29,9 @@ dependencies {
     compile 'com.amazon.alexa:alexa-skills-kit:1.1.2'
     compile 'com.amazonaws:aws-lambda-java-core:1.0.0'
     compile 'com.amazonaws:aws-java-sdk-dynamodb:1.9.40'
+
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+    compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
 
     compile 'log4j:log4j:1.2.17'
     compile 'org.slf4j:slf4j-api:1.7.10'
