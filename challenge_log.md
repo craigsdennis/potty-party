@@ -15,6 +15,6 @@
 * Forked some example code and got code compiling locally
 * Setup Lambda on Amazon
 
+## Day 4
+* Installed and used [Shadow Jar](http://imperceptiblethoughts.com/shadow/) to make fat JAR.
 
-## TODO
-[ ] Build a shadowJar as the dependencies aren't there :( 
