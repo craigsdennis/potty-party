@@ -10,3 +10,11 @@
 ## Day 2
 * More research of the Java Samples
 * Started a Gradle Project
+
+## Day 3
+* Forked some example code and got code compiling locally
+* Setup Lambda on Amazon
+
+
+## TODO
+[ ] Build a shadowJar as the dependencies aren't there :( 
