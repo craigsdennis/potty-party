@@ -16,5 +16,6 @@
 * Setup Lambda on Amazon
 
 ## Day 4
-* Installed and used [Shadow Jar](http://imperceptiblethoughts.com/shadow/) to make fat JAR.
-
+* Installed and used [Shadow JAR](http://imperceptiblethoughts.com/shadow/) to make fat JAR.
+* Built an intent and connected it to my [Amazon Lambda](https://aws.amazon.com/lambda/) function.
+* It lives!
