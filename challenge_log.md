@@ -19,3 +19,9 @@
 * Installed and used [Shadow JAR](http://imperceptiblethoughts.com/shadow/) to make fat JAR.
 * Built an intent and connected it to my [Amazon Lambda](https://aws.amazon.com/lambda/) function.
 * It lives!
+
+
+## Day 5
+* Wrote a handler to check status that accepts a dynamic slot on an intent.
+* Added a new Intent to my schema that uses an Amazon specific Date slot
+* I can now say "what happened today" or "yesterday" and it will call my code and pass in the correct date.
