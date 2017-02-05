@@ -25,3 +25,7 @@
 * Wrote a handler to check status that accepts a dynamic slot on an intent.
 * Added a new Intent to my schema that uses an Amazon specific Date slot
 * I can now say "what happened today" or "yesterday" and it will call my code and pass in the correct date.
+
+## Day 6
+* Researched about Alexa sessions, a lot like web sessions
+* Added a new intent that allows addition of child names.
