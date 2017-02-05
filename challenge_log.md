@@ -29,3 +29,7 @@
 ## Day 6
 * Researched about Alexa sessions, a lot like web sessions
 * Added a new intent that allows addition of child names.
+
+## Day 7
+* Researched DynamoDB for longterm storage
+* Began reading free Kindle book on [Amazon DynamoDB](https://www.amazon.com/Amazon-DynamoDB-Developer-Guide-Services-ebook/dp/B007Q4JGBM/ref=asap_bc?ie=UTF8)
