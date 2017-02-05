@@ -31,6 +31,8 @@ public class PottyPartySpeechlet implements Speechlet {
     switch (intentName) {
       case "CheckStatus":
         return handleCheckStatusIntent(intent, session);
+      case "AddChild":
+        return handleAddChildIntent(intent, session);
       default:
         return unknownIntent(intent, session);
     }
@@ -51,8 +53,20 @@ public class PottyPartySpeechlet implements Speechlet {
 
   }
 
+  private SpeechletResponse handleAddChildIntent(Intent intent, Session session) {
+    String childName = intent.getSlot("ChildName").getValue();
+    String speechText = String.format("You added the child %s", childName);
+    session.setAttribute("childName", childName);
+    PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+    speech.setText(speechText);
+    Reprompt reprompt = new Reprompt();
+    reprompt.setOutputSpeech(speech);
+    return SpeechletResponse.newAskResponse(speech, reprompt);
+  }
+
   private SpeechletResponse handleCheckStatusIntent(Intent intent, Session session) {
-    String speechText = String.format("You checked the status for %s",
+    String speechText = String.format("Your current child is %s, and you checked the status for %s",
+            session.getAttribute("childName"),
             intent.getSlot("Date").getValue());
     PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
     speech.setText(speechText);
