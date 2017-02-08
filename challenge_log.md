@@ -33,3 +33,10 @@
 ## Day 7
 * Researched DynamoDB for longterm storage
 * Began reading free Kindle book on [Amazon DynamoDB](https://www.amazon.com/Amazon-DynamoDB-Developer-Guide-Services-ebook/dp/B007Q4JGBM/ref=asap_bc?ie=UTF8)
+
+## Day 8
+* More reading of the DynamoDB book.
+* Researching Java AWS SDK API
+
+## Day 9
+* Researched [Alexa Skills Kit Voice Design Best Practices](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-voice-design-best-practices)
