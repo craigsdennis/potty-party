@@ -40,3 +40,6 @@
 
 ## Day 9
 * Researched [Alexa Skills Kit Voice Design Best Practices](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-voice-design-best-practices)
+
+## Day 10
+* Created a [Trello board](https://trello.com/b/Ml2HYzP3/potty-party) full of user stories to track the MVP, Minimal Viable Product
