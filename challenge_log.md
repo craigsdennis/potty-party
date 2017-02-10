@@ -43,3 +43,6 @@
 
 ## Day 10
 * Created a [Trello board](https://trello.com/b/Ml2HYzP3/potty-party) full of user stories to track the MVP, Minimal Viable Product
+
+## Day 11
+* Started working on the DynamoDB DAO pattern introduction.
