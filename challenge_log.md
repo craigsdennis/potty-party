@@ -46,3 +46,7 @@
 
 ## Day 11
 * Started working on the DynamoDB DAO pattern introduction.
+
+## Day 12
+* Added Alexa Skill Kit "resources" for reference to this repository.
+* Reworked my initial swing at DynamoDB definitions
