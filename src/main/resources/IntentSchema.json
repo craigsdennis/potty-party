@@ -1,0 +1,28 @@
+{
+  "intents": [
+    {
+      "intent": "CheckStatus",
+      "slots" : [
+        {
+          "name": "Date",
+          "type": "AMAZON.DATE"
+        }
+      ]
+    },
+    {
+      "intent": "AddChild",
+      "slots": [
+        {
+          "name": "ChildName",
+          "type": "NAMES"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.PauseIntent"
+    },
+    {
+      "intent": "AMAZON.ResumeIntent"
+    }
+  ]
+}
