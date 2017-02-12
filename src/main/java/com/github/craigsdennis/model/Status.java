@@ -2,21 +2,30 @@ package com.github.craigsdennis.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-import java.time.LocalDateTime;
-
-@DynamoDBTable(tableName = "Status")
+@DynamoDBTable(tableName = "StatusLog")
 public class Status {
   private String customerId;
   private String kid;
-  private LocalDateTime when;
+  private String when;
   // TODO: enum?
   private String type;
 
   @DynamoDBHashKey(attributeName = "CustomerId")
   public String getCustomerId() {
     return customerId;
+  }
+
+  @DynamoDBRangeKey(attributeName = "When")
+  public String getWhen() {
+    return when;
+  }
+
+
+  public void setWhen(String when) {
+    this.when = when;
   }
 
   public void setCustomerId(String customerId) {
@@ -30,14 +39,6 @@ public class Status {
 
   public void setKid(String kid) {
     this.kid = kid;
-  }
-
-  public LocalDateTime getWhen() {
-    return when;
-  }
-
-  public void setWhen(LocalDateTime when) {
-    this.when = when;
   }
 
   public String getType() {
