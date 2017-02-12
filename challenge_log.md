@@ -50,3 +50,7 @@
 ## Day 12
 * Added Alexa Skill Kit "resources" for reference to this repository.
 * Reworked my initial swing at DynamoDB definitions
+
+## Day 13
+* Worked on my first DynamoDbMapper query.  Whoa.
+* Refactored my package schemas.
