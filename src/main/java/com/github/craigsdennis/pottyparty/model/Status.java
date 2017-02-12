@@ -1,4 +1,4 @@
-package com.github.craigsdennis.model;
+package com.github.craigsdennis.pottyparty.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;

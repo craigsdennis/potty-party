@@ -1,4 +1,4 @@
-package com.github.craigsdennis.model;
+package com.github.craigsdennis.pottyparty.model;
 
 import com.amazon.speech.speechlet.Session;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;

@@ -1,4 +1,4 @@
-package com.github.craigsdennis;
+package com.github.craigsdennis.pottyparty;
 
 import com.amazon.speech.speechlet.lambda.SpeechletRequestStreamHandler;
 
