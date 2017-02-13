@@ -54,3 +54,8 @@
 ## Day 13
 * Worked on my first DynamoDbMapper query.  Whoa.
 * Refactored my package schemas.
+
+## Day 14
+* Made DAO static as supposedly connection should be reused across requests.
+* Fiddled with DynamoDB security.
+* Started learning more about [IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
