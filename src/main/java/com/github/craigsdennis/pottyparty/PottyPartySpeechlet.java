@@ -12,6 +12,10 @@ import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
+import com.github.craigsdennis.pottyparty.model.PottyPartyDao;
+import com.github.craigsdennis.pottyparty.model.Status;
+
+import java.util.List;
 
 public class PottyPartySpeechlet implements Speechlet {
   @Override
@@ -65,9 +69,13 @@ public class PottyPartySpeechlet implements Speechlet {
   }
 
   private SpeechletResponse handleCheckStatusIntent(Intent intent, Session session) {
-    String speechText = String.format("Your current child is %s, and you checked the status for %s",
+    PottyPartyDao dao = new PottyPartyDao();
+    // TODO: this is probably not for today
+    List<Status> statuses = dao.findStatusForToday(session);
+    String speechText = String.format("Your current child is %s, and you checked the status for %s and there are %d available",
             session.getAttribute("childName"),
-            intent.getSlot("Date").getValue());
+            intent.getSlot("Date").getValue(),
+            statuses.size());
     PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
     speech.setText(speechText);
     Reprompt reprompt = new Reprompt();

@@ -14,10 +14,10 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class PottyPartyDao {
-  private final AmazonDynamoDBClient dynamoDBClient;
-  private final DynamoDBMapper mapper;
+  private static final AmazonDynamoDBClient dynamoDBClient;
+  private static final DynamoDBMapper mapper;
 
-  public PottyPartyDao() {
+  static {
     dynamoDBClient = new AmazonDynamoDBClient();
     mapper = new DynamoDBMapper(dynamoDBClient);
   }
