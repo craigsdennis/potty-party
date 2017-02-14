@@ -35,7 +35,7 @@ public class PottyPartyDao {
     eav.put(":val2", new AttributeValue().withS(todayStr));
 
     DynamoDBQueryExpression<Status> queryExpression = new DynamoDBQueryExpression<Status>()
-            .withKeyConditionExpression("CustomerId = :val1 and ReplyDateTime > :val2")
+            .withKeyConditionExpression("CustomerId = :val1 and CreatedAt > :val2")
             .withExpressionAttributeValues(eav);
 
     return mapper.query(Status.class, queryExpression);

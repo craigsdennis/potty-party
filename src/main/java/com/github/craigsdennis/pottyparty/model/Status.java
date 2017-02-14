@@ -9,7 +9,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 public class Status {
   private String customerId;
   private String kid;
-  private String when;
+  private String createdAt;
   // TODO: enum?
   private String type;
 
@@ -18,14 +18,14 @@ public class Status {
     return customerId;
   }
 
-  @DynamoDBRangeKey(attributeName = "When")
-  public String getWhen() {
-    return when;
+  @DynamoDBRangeKey(attributeName = "CreatedAt")
+  public String getCreatedAt() {
+    return createdAt;
   }
 
 
-  public void setWhen(String when) {
-    this.when = when;
+  public void setCreatedAt(String createdAt) {
+    this.createdAt = createdAt;
   }
 
   public void setCustomerId(String customerId) {
