@@ -59,3 +59,7 @@
 * Made DAO static as supposedly connection should be reused across requests.
 * Fiddled with DynamoDB security.
 * Started learning more about [IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
+
+## Day 15
+* Created a new IAM role that has access to DynamoDb
+* Debugged and resolved problem of using the When keyword for a column name.  Wherps!
