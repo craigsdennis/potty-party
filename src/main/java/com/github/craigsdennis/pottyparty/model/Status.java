@@ -41,6 +41,7 @@ public class Status {
     this.kid = kid;
   }
 
+  @DynamoDBAttribute(attributeName = "Type")
   public String getType() {
     return type;
   }

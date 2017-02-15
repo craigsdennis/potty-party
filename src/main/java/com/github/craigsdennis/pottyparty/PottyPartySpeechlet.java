@@ -20,7 +20,7 @@ import java.util.List;
 public class PottyPartySpeechlet implements Speechlet {
   @Override
   public void onSessionStarted(SessionStartedRequest request, Session session) throws SpeechletException {
-
+    // TODO: Retrieve latestKid and set the session if not present
   }
 
   @Override
@@ -33,6 +33,8 @@ public class PottyPartySpeechlet implements Speechlet {
     Intent intent = request.getIntent();
     String intentName = intent.getName();
     switch (intentName) {
+      case "ReportStatus":
+        return handleReportStatusIntent(intent, session);
       case "CheckStatus":
         return handleCheckStatusIntent(intent, session);
       case "AddChild":
@@ -61,6 +63,18 @@ public class PottyPartySpeechlet implements Speechlet {
     String childName = intent.getSlot("ChildName").getValue();
     String speechText = String.format("You added the child %s", childName);
     session.setAttribute("childName", childName);
+    PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+    speech.setText(speechText);
+    Reprompt reprompt = new Reprompt();
+    reprompt.setOutputSpeech(speech);
+    return SpeechletResponse.newAskResponse(speech, reprompt);
+  }
+
+  private SpeechletResponse handleReportStatusIntent(Intent intent, Session session) {
+    PottyPartyDao dao = new PottyPartyDao();
+    Status status = dao.createStatusFromIntent(intent);
+    dao.saveStatus(session, status);
+    String speechText = String.format("Yay %s!  Good job!", status.getKid());
     PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
     speech.setText(speechText);
     Reprompt reprompt = new Reprompt();
