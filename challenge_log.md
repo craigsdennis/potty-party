@@ -63,3 +63,7 @@
 ## Day 15
 * Created a new IAM role that has access to DynamoDb
 * Debugged and resolved problem of using the When keyword for a column name.  Wherps!
+
+## Day 16
+* Got logging working for AWS Lambda
+* Added an update method and successfully stored Poop in the DynamoDb!
