@@ -1,6 +1,15 @@
 {
   "intents": [
     {
+      "intent": "ReportStatus",
+      "slots" : [
+        {
+          "name": "Type",
+          "type": "TYPES"
+        }
+      ]
+    },
+    {
       "intent": "CheckStatus",
       "slots" : [
         {
