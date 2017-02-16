@@ -84,11 +84,11 @@ public class PottyPartySpeechlet implements Speechlet {
 
   private SpeechletResponse handleCheckStatusIntent(Intent intent, Session session) {
     PottyPartyDao dao = new PottyPartyDao();
-    // TODO: this is probably not for today
-    List<Status> statuses = dao.findStatusForToday(session);
+    String dateStr = intent.getSlot("Date").getValue();
+    List<Status> statuses = dao.findStatusForDay(session, dateStr);
     String speechText = String.format("Your current child is %s, and you checked the status for %s and there are %d available",
             session.getAttribute("childName"),
-            intent.getSlot("Date").getValue(),
+            dateStr,
             statuses.size());
     PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
     speech.setText(speechText);

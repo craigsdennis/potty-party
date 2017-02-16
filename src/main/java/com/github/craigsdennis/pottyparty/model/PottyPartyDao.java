@@ -9,12 +9,12 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 
 import org.apache.log4j.Logger;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 public class PottyPartyDao {
   private static final AmazonDynamoDBClient dynamoDBClient;
@@ -26,20 +26,18 @@ public class PottyPartyDao {
     mapper = new DynamoDBMapper(dynamoDBClient);
   }
 
-  // TODO:csd - This work for getting every status after today?
-  public List<Status> findStatusForToday(Session session) {
+
+  public List<Status> findStatusForDay(Session session, String dayString) {
     String alexaId = session.getUser().getUserId();
-    Date today = new Date();
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    dateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-    String todayStr = dateFormatter.format(today);
+    LocalDate start = LocalDate.parse(dayString);
+    LocalDate end = start.plusDays(1);
 
     Map<String, AttributeValue> eav = new HashMap<>();
-    eav.put(":val1", new AttributeValue().withS(alexaId));
-    eav.put(":val2", new AttributeValue().withS(todayStr));
-
+    eav.put(":customerId", new AttributeValue().withS(alexaId));
+    eav.put(":start", new AttributeValue().withS(start.format(DateTimeFormatter.ISO_DATE)));
+    eav.put(":end", new AttributeValue().withS(end.format(DateTimeFormatter.ISO_DATE)));
     DynamoDBQueryExpression<Status> queryExpression = new DynamoDBQueryExpression<Status>()
-            .withKeyConditionExpression("CustomerId = :val1 and CreatedAt > :val2")
+            .withKeyConditionExpression("CustomerId = :customerId and CreatedAt between :start and :end")
             .withExpressionAttributeValues(eav);
 
     return mapper.query(Status.class, queryExpression);
@@ -59,10 +57,8 @@ public class PottyPartyDao {
     status.setKid(String.format("%s",
             session.getAttribute("childName"))
     );
-    Date today = new Date();
-    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-    dateFormatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-    String todayStr = dateFormatter.format(today);
+    LocalDateTime today = LocalDateTime.now();
+    String todayStr = today.format(DateTimeFormatter.ISO_DATE_TIME);
     status.setCreatedAt(todayStr);
     mapper.save(status);
   }

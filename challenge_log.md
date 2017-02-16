@@ -67,3 +67,6 @@
 ## Day 16
 * Got logging working for AWS Lambda
 * Added an update method and successfully stored Poop in the DynamoDb!
+
+## Day 17
+* Refreshed myself on the [Java 8 Datetime updates](http://www.oracle.com/technetwork/articles/java/jf14-date-time-2125367.html)
