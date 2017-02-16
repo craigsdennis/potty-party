@@ -69,4 +69,5 @@
 * Added an update method and successfully stored Poop in the DynamoDb!
 
 ## Day 17
-* Refreshed myself on the [Java 8 Datetime updates](http://www.oracle.com/technetwork/articles/java/jf14-date-time-2125367.html)
+* Refreshed myself on the [Java 8 LocalDateTime updates](http://www.oracle.com/technetwork/articles/java/jf14-date-time-2125367.html)
+* Refactored to use LocalDate
