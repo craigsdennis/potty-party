@@ -39,8 +39,37 @@ public class PottyPartyDao {
     DynamoDBQueryExpression<Status> queryExpression = new DynamoDBQueryExpression<Status>()
             .withKeyConditionExpression("CustomerId = :customerId and CreatedAt between :start and :end")
             .withExpressionAttributeValues(eav);
-
     return mapper.query(Status.class, queryExpression);
+  }
+
+  public String getKid(Session session) {
+    // Session is not set
+    if (!session.getAttributes().keySet().contains("childName")) {
+      logger.debug("childName not in session, getting first status");
+      Status status = findMostRecentStatus(session);
+      if (status != null) {
+        session.setAttribute("childName", status.getKid());
+      }
+    }
+    return (String) session.getAttribute("childName");
+
+  }
+
+  public Status findMostRecentStatus(Session session) {
+    String alexaId = session.getUser().getUserId();
+    Map<String, AttributeValue> eav = new HashMap<>();
+    eav.put(":customerId", new AttributeValue().withS(alexaId));
+    DynamoDBQueryExpression<Status> queryExpression = new DynamoDBQueryExpression<Status>()
+            .withKeyConditionExpression("CustomerId = :customerId")
+            .withScanIndexForward(false)
+            .withLimit(1)
+            .withExpressionAttributeValues(eav);
+    // TODO: protect this better
+    List<Status> statuses = mapper.query(Status.class, queryExpression);
+    if (statuses.size() == 0) {
+      return null;
+    }
+    return statuses.get(0);
   }
 
 
@@ -54,9 +83,7 @@ public class PottyPartyDao {
   public void saveStatus(Session session, Status status) {
     logger.info("saveStatus:" + session.getUser());
     status.setCustomerId(session.getUser().getUserId());
-    status.setKid(String.format("%s",
-            session.getAttribute("childName"))
-    );
+    status.setKid(getKid(session));
     LocalDateTime today = LocalDateTime.now();
     String todayStr = today.format(DateTimeFormatter.ISO_DATE_TIME);
     status.setCreatedAt(todayStr);

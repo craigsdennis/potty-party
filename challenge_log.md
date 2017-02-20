@@ -71,3 +71,15 @@
 ## Day 17
 * Refreshed myself on the [Java 8 LocalDateTime updates](http://www.oracle.com/technetwork/articles/java/jf14-date-time-2125367.html)
 * Refactored to use LocalDate
+
+## Day 18
+* Researched Amazon Simple Queue Service
+
+## Day 19
+* Started reading free ebook on [Amazon Simple Queue Service](https://www.amazon.com/Amazon-Simple-Queue-Service-Developer-ebook/dp/B007S1LEEA)
+
+## Day 20
+* Some light refactoring of the codebase
+
+## Day 21
+* Always set session to have last kid added.

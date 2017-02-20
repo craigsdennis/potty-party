@@ -15,12 +15,17 @@ import com.amazon.speech.ui.SimpleCard;
 import com.github.craigsdennis.pottyparty.model.PottyPartyDao;
 import com.github.craigsdennis.pottyparty.model.Status;
 
+import org.apache.log4j.Logger;
+
 import java.util.List;
 
 public class PottyPartySpeechlet implements Speechlet {
+  private final Logger logger = Logger.getLogger(PottyPartySpeechlet.class);
   @Override
   public void onSessionStarted(SessionStartedRequest request, Session session) throws SpeechletException {
-    // TODO: Retrieve latestKid and set the session if not present
+    PottyPartyDao dao = new PottyPartyDao();
+    String kid = dao.getKid(session);
+    logger.debug("Session started and kid is set to " + kid);
   }
 
   @Override
@@ -87,7 +92,7 @@ public class PottyPartySpeechlet implements Speechlet {
     String dateStr = intent.getSlot("Date").getValue();
     List<Status> statuses = dao.findStatusForDay(session, dateStr);
     String speechText = String.format("Your current child is %s, and you checked the status for %s and there are %d available",
-            session.getAttribute("childName"),
+            dao.getKid(session),
             dateStr,
             statuses.size());
     PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
