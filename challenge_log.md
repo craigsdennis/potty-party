@@ -82,4 +82,8 @@
 * Some light refactoring of the codebase
 
 ## Day 21
-* Always set session to have last kid added.
+* Add feature to always set session to have last kid used/added.
+
+## Day 22
+* Started researching [Amazon Push Notification Service - SNS](https://aws.amazon.com/sns/)
+* Completed tutorial on [Scheduled Events with Lambda](http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)
