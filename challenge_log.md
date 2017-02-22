@@ -87,3 +87,7 @@
 ## Day 22
 * Started researching [Amazon Push Notification Service - SNS](https://aws.amazon.com/sns/)
 * Completed tutorial on [Scheduled Events with Lambda](http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html)
+
+## Day 23
+* Add the concept of [PottySessions](https://trello.com/c/jVu8WUzy/2-as-a-parent-i-should-be-able-to-start-and-stop-a-potty-session-so-that-i-can-be-reminded-to-try-to-get-child-to-attempt-potty-ti) to the model
+* Added DynamoDB table to store the sessions.
