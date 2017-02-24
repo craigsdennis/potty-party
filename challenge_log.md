@@ -91,3 +91,9 @@
 ## Day 23
 * Add the concept of [PottySessions](https://trello.com/c/jVu8WUzy/2-as-a-parent-i-should-be-able-to-start-and-stop-a-potty-session-so-that-i-can-be-reminded-to-try-to-get-child-to-attempt-potty-ti) to the model
 * Added DynamoDB table to store the sessions.
+
+## Day 24
+* Setup new Lambda function triggered by CloudWatch on a schedule
+
+## Day 25
+* Used Amazon SNS to send a test SMS message
