@@ -93,7 +93,7 @@
 * Added DynamoDB table to store the sessions.
 
 ## Day 24
-* Setup new Lambda function triggered by CloudWatch on a schedule
+* Setup new Lambda function triggered by [CloudWatch](http://docs.aws.amazon.com/lambda/latest/dg/with-scheduled-events.html) on a schedule
 
 ## Day 25
-* Used Amazon SNS to send a test SMS message
+* Used Amazon SNS to send a test [SMS message](http://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html#sms_publish_sdk)
