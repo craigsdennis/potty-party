@@ -1,6 +1,15 @@
 {
   "intents": [
     {
+      "intent": "ManageSession"
+      "slots" : [
+        {
+          "name": "SessionType",
+          "type": "SESSION_TYPES"
+        }
+      ]
+    },
+    {
       "intent": "ReportStatus",
       "slots" : [
         {

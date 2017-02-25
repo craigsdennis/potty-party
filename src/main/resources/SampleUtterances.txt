@@ -1,3 +1,5 @@
+ManageSession {SessionType} session
+
 ReportStatus they went {Type}
 ReportStatus went potty and it was {Type}
 ReportStatus add {Type}

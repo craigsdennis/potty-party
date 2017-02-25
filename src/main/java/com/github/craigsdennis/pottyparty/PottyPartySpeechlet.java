@@ -38,6 +38,8 @@ public class PottyPartySpeechlet implements Speechlet {
     Intent intent = request.getIntent();
     String intentName = intent.getName();
     switch (intentName) {
+      case "ManageSession":
+        return handleManageSessionIntent(intent, session);
       case "ReportStatus":
         return handleReportStatusIntent(intent, session);
       case "CheckStatus":
@@ -68,6 +70,23 @@ public class PottyPartySpeechlet implements Speechlet {
     String childName = intent.getSlot("ChildName").getValue();
     String speechText = String.format("You added the child %s", childName);
     session.setAttribute("childName", childName);
+    PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+    speech.setText(speechText);
+    Reprompt reprompt = new Reprompt();
+    reprompt.setOutputSpeech(speech);
+    return SpeechletResponse.newAskResponse(speech, reprompt);
+  }
+
+  private SpeechletResponse handleManageSessionIntent(Intent intent, Session session) {
+    PottyPartyDao dao = new PottyPartyDao();
+    String sessionType = intent.getSlot("SessionType").getValue();
+    String speechText = "Session has begun";
+    if (sessionType.equalsIgnoreCase("start")) {
+      dao.startPottySession(session);
+    } else {
+      speechText = "Session has stopped";
+      dao.stopPottySessions(session);
+    }
     PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
     speech.setText(speechText);
     Reprompt reprompt = new Reprompt();

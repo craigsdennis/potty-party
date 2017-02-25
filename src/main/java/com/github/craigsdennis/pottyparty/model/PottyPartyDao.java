@@ -90,5 +90,30 @@ public class PottyPartyDao {
     mapper.save(status);
   }
 
+  public List<PottySession> findActivePottySessions(Session session) {
+    String alexaId = session.getUser().getUserId();
+    Map<String, AttributeValue> eav = new HashMap<>();
+    eav.put(":customerId", new AttributeValue().withS(alexaId));
+    eav.put(":isActive", new AttributeValue().withBOOL(true));
+    DynamoDBQueryExpression<PottySession> queryExpression = new DynamoDBQueryExpression<PottySession>()
+            .withKeyConditionExpression("CustomerId = :customerId AND IsActive = :isActive")
+            .withExpressionAttributeValues(eav);
+    return mapper.query(PottySession.class, queryExpression);
+  }
+
+  public void stopPottySessions(Session session) {
+    List<PottySession> pottySessions = findActivePottySessions(session);
+    if (pottySessions.size() > 0) {
+      pottySessions.forEach(ps -> ps.setActive(false));
+      mapper.batchSave(pottySessions);
+    }
+  }
+
+  public void startPottySession(Session session) {
+    stopPottySessions(session);
+    PottySession pottySession = new PottySession();
+    pottySession.setActive(true);
+    mapper.save(pottySession);
+  }
 }
 

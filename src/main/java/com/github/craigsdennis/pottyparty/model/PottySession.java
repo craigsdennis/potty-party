@@ -11,10 +11,10 @@ import java.util.Set;
 public class PottySession {
   private String customerId;
   private boolean isActive;
-  private Set notificationsSentAt;
+  private Set<String> notificationsSentAt;
 
 
-  @DynamoDBRangeKey(attributeName = "CreatedAt")
+  @DynamoDBAttribute(attributeName = "CreatedAt")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -30,7 +30,7 @@ public class PottySession {
     this.customerId = customerId;
   }
 
-  @DynamoDBAttribute(attributeName = "IsActive")
+  @DynamoDBRangeKey(attributeName = "IsActive")
   public boolean isActive() {
     return isActive;
   }
@@ -40,11 +40,11 @@ public class PottySession {
   }
 
   @DynamoDBAttribute(attributeName = "Notifications")
-  public Set getNotificationsSentAt() {
+  public Set<String> getNotificationsSentAt() {
     return notificationsSentAt;
   }
 
-  public void setNotificationsSentAt(Set notificationsSentAt) {
+  public void setNotificationsSentAt(Set<String> notificationsSentAt) {
     this.notificationsSentAt = notificationsSentAt;
   }
 
