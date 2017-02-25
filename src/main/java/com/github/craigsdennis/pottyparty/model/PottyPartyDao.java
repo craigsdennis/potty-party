@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class PottyPartyDao {
   private static final AmazonDynamoDBClient dynamoDBClient;
@@ -46,16 +47,14 @@ public class PottyPartyDao {
     // Session is not set
     if (!session.getAttributes().keySet().contains("childName")) {
       logger.debug("childName not in session, getting first status");
-      Status status = findMostRecentStatus(session);
-      if (status != null) {
-        session.setAttribute("childName", status.getKid());
-      }
+      findMostRecentStatus(session)
+              .ifPresent(s -> session.setAttribute("childName", s.getKid()));
     }
     return (String) session.getAttribute("childName");
 
   }
 
-  public Status findMostRecentStatus(Session session) {
+  public Optional<Status> findMostRecentStatus(Session session) {
     String alexaId = session.getUser().getUserId();
     Map<String, AttributeValue> eav = new HashMap<>();
     eav.put(":customerId", new AttributeValue().withS(alexaId));
@@ -64,12 +63,9 @@ public class PottyPartyDao {
             .withScanIndexForward(false)
             .withLimit(1)
             .withExpressionAttributeValues(eav);
-    // TODO: protect this better
-    List<Status> statuses = mapper.query(Status.class, queryExpression);
-    if (statuses.size() == 0) {
-      return null;
-    }
-    return statuses.get(0);
+
+    return mapper.query(Status.class, queryExpression).stream()
+            .findFirst();
   }
 
 
