@@ -97,3 +97,7 @@
 
 ## Day 25
 * Used Amazon SNS to send a test [SMS message](http://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html#sms_publish_sdk)
+
+## Day 26
+* Added Session Management Intent and handlers
+* Refactored to use Optionals
