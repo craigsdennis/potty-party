@@ -27,10 +27,10 @@ repositories {
 // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sns
 
 dependencies {
-    compile 'com.amazon.alexa:alexa-skills-kit:1.1.2'
-    compile 'com.amazonaws:aws-lambda-java-core:1.0.0'
-    compile 'com.amazonaws:aws-java-sdk-dynamodb:1.9.40'
-    compile 'com.amazonaws:aws-java-sdk-sns:1.11.93'
+    compile 'com.amazon.alexa:alexa-skills-kit:1.2'
+    compile 'com.amazonaws:aws-lambda-java-core:1.1.0'
+    compile 'com.amazonaws:aws-java-sdk-dynamodb:1.11.96'
+    compile 'com.amazonaws:aws-java-sdk-sns:1.11.96'
 
     compile 'org.apache.commons:commons-lang3:3.3.2'
     compile 'org.apache.directory.studio:org.apache.commons.io:2.4'

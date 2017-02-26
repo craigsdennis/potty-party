@@ -90,7 +90,7 @@ public class PottyPartyDao {
     String alexaId = session.getUser().getUserId();
     Map<String, AttributeValue> eav = new HashMap<>();
     eav.put(":customerId", new AttributeValue().withS(alexaId));
-    eav.put(":isActive", new AttributeValue().withBOOL(true));
+    eav.put(":isActive", new AttributeValue().withN("1"));
     DynamoDBQueryExpression<PottySession> queryExpression = new DynamoDBQueryExpression<PottySession>()
             .withKeyConditionExpression("CustomerId = :customerId AND IsActive = :isActive")
             .withExpressionAttributeValues(eav);

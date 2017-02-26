@@ -1,7 +1,7 @@
 {
   "intents": [
     {
-      "intent": "ManageSession"
+      "intent": "ManageSession",
       "slots" : [
         {
           "name": "SessionType",

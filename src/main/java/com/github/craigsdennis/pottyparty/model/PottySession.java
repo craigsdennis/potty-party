@@ -7,7 +7,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.Set;
 
-@DynamoDBTable(tableName = "Session")
+@DynamoDBTable(tableName = "PottySession")
 public class PottySession {
   private String customerId;
   private boolean isActive;
