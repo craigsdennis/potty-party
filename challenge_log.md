@@ -101,3 +101,7 @@
 ## Day 26
 * Added Session Management Intent and handlers
 * Refactored to use Optionals
+
+## Day 27
+* Wrestled some dependency nightmares
+* DynamoDb woes with boolean partion keys
