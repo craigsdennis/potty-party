@@ -90,9 +90,9 @@ public class PottyPartyDao {
     String alexaId = session.getUser().getUserId();
     Map<String, AttributeValue> eav = new HashMap<>();
     eav.put(":customerId", new AttributeValue().withS(alexaId));
-    eav.put(":isActive", new AttributeValue().withN("1"));
+    eav.put(":currentStatus", new AttributeValue().withS("active"));
     DynamoDBQueryExpression<PottySession> queryExpression = new DynamoDBQueryExpression<PottySession>()
-            .withKeyConditionExpression("CustomerId = :customerId AND IsActive = :isActive")
+            .withKeyConditionExpression("CustomerId = :customerId AND CurrentStatus = :currentStatus")
             .withExpressionAttributeValues(eav);
     return mapper.query(PottySession.class, queryExpression);
   }
@@ -100,15 +100,18 @@ public class PottyPartyDao {
   public void stopPottySessions(Session session) {
     List<PottySession> pottySessions = findActivePottySessions(session);
     if (pottySessions.size() > 0) {
-      pottySessions.forEach(ps -> ps.setActive(false));
+      pottySessions.forEach(ps -> ps.setStatus("complete"));
       mapper.batchSave(pottySessions);
     }
   }
 
   public void startPottySession(Session session) {
+    String alexaId = session.getUser().getUserId();
     stopPottySessions(session);
     PottySession pottySession = new PottySession();
-    pottySession.setActive(true);
+    // TODO: Status ENUM
+    pottySession.setStatus("active");
+    pottySession.setCustomerId(alexaId);
     mapper.save(pottySession);
   }
 }

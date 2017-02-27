@@ -10,7 +10,7 @@ import java.util.Set;
 @DynamoDBTable(tableName = "PottySession")
 public class PottySession {
   private String customerId;
-  private boolean isActive;
+  private String status;
   private Set<String> notificationsSentAt;
 
 
@@ -30,13 +30,14 @@ public class PottySession {
     this.customerId = customerId;
   }
 
-  @DynamoDBRangeKey(attributeName = "IsActive")
-  public boolean isActive() {
-    return isActive;
+  // Status is reserved
+  @DynamoDBRangeKey(attributeName = "CurrentStatus")
+  public String getStatus() {
+    return status;
   }
 
-  public void setActive(boolean active) {
-    isActive = active;
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   @DynamoDBAttribute(attributeName = "Notifications")
