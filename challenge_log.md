@@ -104,4 +104,7 @@
 
 ## Day 27
 * Wrestled some dependency nightmares
-* DynamoDb woes with boolean partion keys
+* DynamoDb woes with boolean partition keys
+
+## Day 28
+* Finally got DynamoDb working with a string status, but not named status that's reserved
