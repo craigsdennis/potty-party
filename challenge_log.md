@@ -108,3 +108,6 @@
 
 ## Day 28
 * Finally got DynamoDb working with a string status, but not named status that's reserved
+
+## Day 29
+* Worked on getting the notification scheduled events working.  Work in progress.

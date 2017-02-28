@@ -5,9 +5,13 @@ import com.amazonaws.services.sns.AmazonSNSClientBuilder;
 import com.amazonaws.services.sns.model.MessageAttributeValue;
 import com.amazonaws.services.sns.model.PublishRequest;
 import com.amazonaws.services.sns.model.PublishResult;
+import com.github.craigsdennis.pottyparty.model.PottyPartyDao;
+import com.github.craigsdennis.pottyparty.model.PottySession;
 
 import org.apache.log4j.Logger;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,9 +21,23 @@ public class Check {
 
   public static void notifyOpenSessions() {
     logger.info("notifyOpenSessions");
+    // Find all sessions that are active
+    PottyPartyDao dao = new PottyPartyDao();
+    dao.findAllActivePottySessions().stream()
+            .filter(session -> session.getNextNotificationTime().isBefore(LocalDateTime.now()))
+            .forEach(Check::notifySession);
+  }
+
+  private static void notifySession(PottySession pottySession) {
+    PottyPartyDao dao = new PottyPartyDao();
+    // TODO: Pull communication methods/kid from pottySession
     String testPhoneNumber = System.getenv("TEST_PHONE_NUMBER");
-    PublishResult result = sendSMS(testPhoneNumber, "This is a test!");
+
+    PublishResult result = sendSMS(testPhoneNumber, "It's potty time!");
     logger.info("Published message: "+ result);
+    pottySession.getNotificationsSentAt()
+            .add(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
+    dao.save(pottySession);
   }
 
   public static PublishResult sendSMS(String phoneNumber, String message) {

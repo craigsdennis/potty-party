@@ -86,7 +86,7 @@ public class PottyPartyDao {
     mapper.save(status);
   }
 
-  public List<PottySession> findActivePottySessions(Session session) {
+  public List<PottySession> findActivePottySessionsForCurrentSession(Session session) {
     String alexaId = session.getUser().getUserId();
     Map<String, AttributeValue> eav = new HashMap<>();
     eav.put(":customerId", new AttributeValue().withS(alexaId));
@@ -97,8 +97,19 @@ public class PottyPartyDao {
     return mapper.query(PottySession.class, queryExpression);
   }
 
+  public List<PottySession> findAllActivePottySessions() {
+    Map<String, AttributeValue> eav = new HashMap<>();
+    eav.put(":currentStatus", new AttributeValue().withS("active"));
+    // TODO: Move this to a scan
+    DynamoDBQueryExpression<PottySession> queryExpression = new DynamoDBQueryExpression<PottySession>()
+            .withKeyConditionExpression("CurrentStatus = :currentStatus")
+            .withExpressionAttributeValues(eav);
+    return mapper.query(PottySession.class, queryExpression);
+  }
+
+
   public void stopPottySessions(Session session) {
-    List<PottySession> pottySessions = findActivePottySessions(session);
+    List<PottySession> pottySessions = findActivePottySessionsForCurrentSession(session);
     if (pottySessions.size() > 0) {
       pottySessions.forEach(ps -> ps.setStatus("complete"));
       mapper.batchSave(pottySessions);
@@ -112,6 +123,10 @@ public class PottyPartyDao {
     // TODO: Status ENUM
     pottySession.setStatus("active");
     pottySession.setCustomerId(alexaId);
+
+  }
+
+  public void save(PottySession pottySession) {
     mapper.save(pottySession);
   }
 }

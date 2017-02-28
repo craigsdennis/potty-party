@@ -5,6 +5,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @DynamoDBTable(tableName = "PottySession")
@@ -47,6 +48,13 @@ public class PottySession {
 
   public void setNotificationsSentAt(Set<String> notificationsSentAt) {
     this.notificationsSentAt = notificationsSentAt;
+  }
+
+  public LocalDateTime getNextNotificationTime() {
+    String dateTime = notificationsSentAt.stream()
+            .max(String::compareTo)
+            .orElse(createdAt);
+    return LocalDateTime.parse(dateTime).plusMinutes(15);
   }
 
 
